@@ -1,5 +1,19 @@
 const cardsContainer = document.getElementById('cards-container');
 
+const backendUrlText = document.getElementById('backend-url');
+const backendUrl = window.location.origin + "/sink";
+backendUrlText.innerText = backendUrl;
+
+const clearBtn = document.getElementById('clear-btn');
+// confirm clear
+clearBtn.addEventListener('click', () => {
+    if (confirm("Are you sure you want to clear the messages?")) {
+        fetch('/sink', {
+            method: 'DELETE'
+        });
+    }
+});
+
 const timestampKey = "_timestamp"
 
 const getMessages = async () => {
