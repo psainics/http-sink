@@ -2,9 +2,10 @@ import express from "express";
 
 // Express app
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-// app.use(express.raw({ type: '*/*' }));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.text());
+app.use(express.raw({ type: '*/*' }));
 
 // Environment variables
 const ENV = {
@@ -28,7 +29,8 @@ app.get(ENV.ENDPOINT, (req, res) => {
 });
 
 app.post(ENV.ENDPOINT, (req, res) => {
-  const message = req.body;
+  const buffer = req.body;
+  const message = buffer.toString();
   const contentType = req.headers["content-type"];
   addMessage(message, contentType);
   res.json(message);

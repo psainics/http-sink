@@ -33,9 +33,10 @@ const renderMessage = (message) => {
     cardText.classList.add('languague-json', 'hljs');
 
     // json highlight
-    const code = hljs.highlight(JSON.stringify(message.message, null, 2) , { language: 'json' });
+    const code = hljs.highlight(message.message, { language: 'json' });
 
     cardText.innerHTML = code.value;
+    // cardText.innerHTML = message.message;
     cardPre.appendChild(cardText);
     cardBody.appendChild(cardPre);
 
