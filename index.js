@@ -28,6 +28,16 @@ app.get(ENV.ENDPOINT, (req, res) => {
   res.json(messageQueue);
 });
 
+app.put("/sink/:country/:id", (req, res) => {
+  const country = req.params.country;
+  const id = req.params.id;
+  const message = req.body;
+  const contentType = req.headers["content-type"] + " PUT @ /" + country + "/" + id;
+  addMessage(message, contentType);
+  res.json(message);
+  }
+);
+
 app.post(ENV.ENDPOINT, (req, res) => {
   const message = req.body;
   const contentType = req.headers["content-type"];
